@@ -1,0 +1,25 @@
+services:
+  backend:
+    build:
+      context: ../flask-project
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8001:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - v-fstack-fe-dist:/v-fe-dist
+
+  frontend:
+    build:
+      context: ../rsbuild-project
+      dockerfile: Dockerfile
+    volumes:
+      - v-fstack-fe-dist:/v-dist
+
+volumes:
+  v-fstack-fe-dist:
