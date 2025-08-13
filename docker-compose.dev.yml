@@ -1,0 +1,33 @@
+services:
+  backend:
+    build:
+      context: flask-project
+      dockerfile: dev.Dockerfile
+    ports:
+      - "8000:8000"
+
+    develop:
+      watch:
+        - action: sync
+          path: flask-project
+          target: /app
+
+  frontend:
+    build:
+      context: rsbuild-project
+      dockerfile: dev.Dockerfile
+    ports:
+      - "8001:3000"
+
+    develop:
+      watch:
+        - action: sync
+          path: rsbuild-project
+          target: /app
+        - action: sync+restart
+          path: rsbuild-project/package.json
+          target: /app/package.json
+        - action: sync+restart
+          path: rsbuild-project/rsbuild.config.ts
+          target: /app/rsbuild.config.ts
+
