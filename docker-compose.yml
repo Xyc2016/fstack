@@ -1,7 +1,7 @@
 services:
   backend:
     build:
-      context: ../flask-project
+      context: flask-project
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
@@ -16,7 +16,8 @@ services:
 
   frontend:
     build:
-      context: ../rsbuild-project
+      network: host # RUN command with host proxy
+      context: rsbuild-project
       dockerfile: Dockerfile
     volumes:
       - v-fstack-fe-dist:/v-dist
