@@ -1,6 +1,0 @@
-[submodule "flask-project"]
-	path = flask-project
-	url = git@github.com:Xyc2016/flask-project.git
-[submodule "rsbuild-project"]
-	path = rsbuild-project
-	url = git@github.com:Xyc2016/rsbuild-project.git
